@@ -11,4 +11,4 @@ app.get('/', (c) => {
 
 app.route('/hello', helloApp)
 
-Deno.serve(app.fetch)
+Deno.serve({ port: 8080 }, app.fetch)
