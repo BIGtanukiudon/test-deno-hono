@@ -7,4 +7,7 @@ WORKDIR /app
 COPY deno.jsonc deno.lock main.ts routers.ts /app/
 
 EXPOSE 8080
+
+RUN deno cache ./main.ts
+
 CMD ["deno", "task", "start"]
