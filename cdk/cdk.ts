@@ -40,12 +40,8 @@ export class AppStack extends Stack {
       testDenoHonoLambda,
     )
 
-    const httpApi = new apiGateway.HttpApi(this, 'TestDenoHonoApi')
-
-    httpApi.addRoutes({
-      path: '/',
-      methods: [apiGateway.HttpMethod.GET],
-      integration,
+    new apiGateway.HttpApi(this, 'TestDenoHonoApi', {
+      defaultIntegration: integration,
     })
   }
 }

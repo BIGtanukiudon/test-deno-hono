@@ -20,7 +20,7 @@ snapshot[`Snapshot Test 1`] = `
             "Fn::Join": [
               "",
               [
-                "123456789000.dkr.ecr.ap-northeast-1.",
+                "111215764489.dkr.ecr.ap-northeast-1.",
                 {
                   Ref: "AWS::URLSuffix",
                 },
@@ -41,37 +41,20 @@ snapshot[`Snapshot Test 1`] = `
       },
       Type: "AWS::Lambda::Function",
     },
-    TestDenoHonoApiDefaultStage7F84252F: {
-      Properties: {
-        ApiId: {
-          Ref: "TestDenoHonoApiF300FCC6",
-        },
-        AutoDeploy: true,
-        StageName: "\$default",
-      },
-      Type: "AWS::ApiGatewayV2::Stage",
-    },
-    TestDenoHonoApiF300FCC6: {
-      Properties: {
-        Name: "TestDenoHonoApi",
-        ProtocolType: "HTTP",
-      },
-      Type: "AWS::ApiGatewayV2::Api",
-    },
-    TestDenoHonoApiGET72A56996: {
+    TestDenoHonoApiDefaultRouteD706653D: {
       Properties: {
         ApiId: {
           Ref: "TestDenoHonoApiF300FCC6",
         },
         AuthorizationType: "NONE",
-        RouteKey: "GET /",
+        RouteKey: "\$default",
         Target: {
           "Fn::Join": [
             "",
             [
               "integrations/",
               {
-                Ref: "TestDenoHonoApiGETTestDenoHonoApiIntegration556B8026",
+                Ref: "TestDenoHonoApiDefaultRouteTestDenoHonoApiIntegration8DFCDD4B",
               },
             ],
           ],
@@ -79,7 +62,7 @@ snapshot[`Snapshot Test 1`] = `
       },
       Type: "AWS::ApiGatewayV2::Route",
     },
-    TestDenoHonoApiGETTestDenoHonoApiIntegration556B8026: {
+    TestDenoHonoApiDefaultRouteTestDenoHonoApiIntegration8DFCDD4B: {
       Properties: {
         ApiId: {
           Ref: "TestDenoHonoApiF300FCC6",
@@ -95,7 +78,7 @@ snapshot[`Snapshot Test 1`] = `
       },
       Type: "AWS::ApiGatewayV2::Integration",
     },
-    TestDenoHonoApiGETTestDenoHonoApiIntegrationPermission9674020C: {
+    TestDenoHonoApiDefaultRouteTestDenoHonoApiIntegrationPermissionADB41DB3: {
       Properties: {
         Action: "lambda:InvokeFunction",
         FunctionName: {
@@ -125,12 +108,29 @@ snapshot[`Snapshot Test 1`] = `
               {
                 Ref: "TestDenoHonoApiF300FCC6",
               },
-              "/*/*/",
+              "/*/*",
             ],
           ],
         },
       },
       Type: "AWS::Lambda::Permission",
+    },
+    TestDenoHonoApiDefaultStage7F84252F: {
+      Properties: {
+        ApiId: {
+          Ref: "TestDenoHonoApiF300FCC6",
+        },
+        AutoDeploy: true,
+        StageName: "\$default",
+      },
+      Type: "AWS::ApiGatewayV2::Stage",
+    },
+    TestDenoHonoApiF300FCC6: {
+      Properties: {
+        Name: "TestDenoHonoApi",
+        ProtocolType: "HTTP",
+      },
+      Type: "AWS::ApiGatewayV2::Api",
     },
     TestDenoHonoRole5F2C8083: {
       Properties: {
