@@ -1,7 +1,6 @@
 import { Hono } from 'hono'
-import { z } from 'zod'
-import { zValidator } from '@hono/zod-validator'
-import helloApp from '$/routers.ts'
+import helloApp from '$/hello-routers.ts'
+import redisApp from '$/redis-routers.ts'
 
 const app = new Hono()
 
@@ -10,5 +9,6 @@ app.get('/', (c) => {
 })
 
 app.route('/hello', helloApp)
+app.route('/redis', redisApp)
 
 Deno.serve({ port: 8080 }, app.fetch)
