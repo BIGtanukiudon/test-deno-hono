@@ -4,7 +4,7 @@ COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt
 
 WORKDIR /app
 
-COPY deno.jsonc deno.lock main.ts routers.ts /app/
+COPY deno.jsonc deno.lock main.ts hello-routers.ts redis-routers.ts redis.ts /app/
 
 EXPOSE 8080
 
