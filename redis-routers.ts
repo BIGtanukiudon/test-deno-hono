@@ -5,8 +5,6 @@ import { get as getRedis, set as setRedis } from '$/redis.ts'
 import { HTTPException } from 'hono/http-exception'
 
 const redis = new Hono()
-
-const route = redis
   .get(
     '/',
     zValidator(
@@ -60,7 +58,5 @@ const route = redis
       return c.json({ message: res })
     },
   )
-
-export type AppType = typeof route
 
 export default redis

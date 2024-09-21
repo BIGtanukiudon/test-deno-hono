@@ -8,7 +8,10 @@ app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
 
-app.route('/hello', helloApp)
-app.route('/redis', redisApp)
+const routes = app
+  .route('/hello', helloApp)
+  .route('/redis', redisApp)
+
+export type AppType = typeof routes
 
 Deno.serve({ port: 8080 }, app.fetch)
