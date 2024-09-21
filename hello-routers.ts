@@ -4,7 +4,7 @@ import { zValidator } from '@hono/zod-validator'
 
 const hello = new Hono()
 
-hello.get(
+const routes = hello.get(
   '/',
   zValidator(
     'query',
@@ -19,4 +19,5 @@ hello.get(
   },
 )
 
+export type AppType = typeof routes
 export default hello
