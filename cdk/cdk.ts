@@ -42,6 +42,15 @@ export class AppStack extends Stack {
 
     new apiGateway.HttpApi(this, 'TestDenoHonoApi', {
       defaultIntegration: integration,
+      corsPreflight: {
+        allowOrigins: ['*'],
+        allowMethods: [
+          apiGateway.CorsHttpMethod.GET,
+          apiGateway.CorsHttpMethod.POST,
+          apiGateway.CorsHttpMethod.OPTIONS,
+        ],
+        exposeHeaders: ['*'],
+      },
     })
   }
 }
