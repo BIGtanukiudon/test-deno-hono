@@ -30,3 +30,22 @@ jobs:
         run: |
           docker build . --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
           docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: '1.46.2'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: npm build
+        run: deno run -A ./scripts/build_npm.ts 0.1.0
+
+      - name: Login to AWS CodeArtifact
+        run: |
+          aws codeartifact login --tool npm --repository test-deno-hono-schema --domain test-deno-hono-schema --domain-owner ${{ secrets.AWS_ACCOUNT_ID }} --region ap-northeast-1
+
+      - name: npm publish
+        run: |
+          cd npm && npm publish
