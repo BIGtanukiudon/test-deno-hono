@@ -40,7 +40,7 @@ jobs:
           node-version: '20'
 
       - name: npm build
-        run: deno run -A ./scripts/build_npm.ts 0.1.0
+        run: deno task npm:build
 
       - name: Login to AWS CodeArtifact
         run: |
