@@ -40,3 +40,4 @@ Untitled*.ipynb
 node_modules/
 .aws/
 cdk.out/
+npm/

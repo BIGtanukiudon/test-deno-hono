@@ -26,5 +26,4 @@ const routes = app
   .route('/redis', redisApp)
 
 export type AppType = typeof routes
-
-Deno.serve({ port: 8080 }, app.fetch)
+export default app
